@@ -17,7 +17,20 @@ router.delete('/deleteTask/:id', (req, res) => {
 });
 
 
+router.put('/updateTask/:id', (req, res) => {
+    console.log("task deleted ===>", req.params);
+    taskServices.updateTask(req, res);
+
+});
+
+
 module.exports = router;
 
 
 // localhost:3000/task/deleteTask/123
+
+
+// M = mongo
+// E= express
+// // A= angular  full stack developer 
+// N= node  
