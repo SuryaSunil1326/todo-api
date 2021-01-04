@@ -74,7 +74,40 @@ task.deleteTask = async function deleteTask(req, res) {
     }
 }
 
+function taskUpdation(taskDetail) {
+    const dataToUpdate = { status: 'completed' };
+    return new Promise((resolve, reject) => {
+        dbQuery.updateTaskByTaskId(taskDetail,dataToUpdate, function (err, result) {
+            if (result) {
+                console.log("updated result ===>",result);
+                resolve()
+            }
+            else {
+                reject();
+            }
+        })
+    })
+}
 
+
+
+task.updateTask = async function updateTask(req, res) {
+    const taskDetail = {};
+    taskDetail.taskId = req.params.id;
+
+    try {
+        await taskUpdation(taskDetail);
+        return res.json({
+            success: true,
+            Message: "Task Updated Successfully !!"
+        });
+    } catch (err) {
+        return res.json({
+            success: false,
+            Error: err
+        });
+    }
+}
 
 
 module.exports = task;
