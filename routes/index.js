@@ -10,7 +10,14 @@ router.post('/addTask', (req, res) => {
 
 });
 
+router.delete('/deleteTask/:id', (req, res) => {
+    console.log("task deleted ===>", req.params);
+    taskServices.deleteTask(req, res);
+
+});
+
+
 module.exports = router;
 
 
-// localhost:3000/task/addtask
+// localhost:3000/task/deleteTask/123
